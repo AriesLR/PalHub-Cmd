@@ -27,6 +27,9 @@ PalHub is a lightweight server manager specifically designed for Palworld server
 
 ## Config Options
 
+> [!IMPORTANT]  
+> You must configure PalHub or it will not work.
+
 - **`ZIP_DIR`**: Set the directory where 7Zip is installed.
 - **`SERVER_DIR`**: Set the directory where your Palworld server is located.
 - **`BACKUP_DIR`**: Set the directory to store backup files for saves.
