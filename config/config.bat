@@ -37,10 +37,10 @@ set BACKUP_DIR="C:\PalworldServerBackups"
 rem === Rcon Information ===
 
 rem Rcon IP:Port
-set RCON_IP="47.232.24.234:25575"
+set RCON_IP="YOU_IP_HERE"
 
 rem Rcon Password
-set RCON_PASS="CVP"
+set RCON_PASS="YOUR_PASSWORD_HERE"
 
 
 
