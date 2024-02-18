@@ -22,7 +22,7 @@ PalHub is a lightweight server manager specifically designed for Palworld server
    - Run the script `PalHub.bat`.
    - PalHub will start your Palworld server.
 
-3. **Automate Restart (Optional):**
+3. **Automated Restarts:**
    - PalHub automatically waits for the specified interval (`RESTART_INTERVAL`) and restarts the server.
    - Customize the interval by adjusting the `RESTART_INTERVAL` variable in the script.
 
