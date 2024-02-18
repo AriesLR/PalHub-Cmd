@@ -1,0 +1,2 @@
+# PalHub
+ Palworld Server Launcher
