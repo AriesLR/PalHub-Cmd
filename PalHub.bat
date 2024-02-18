@@ -10,34 +10,14 @@ rem ============================================================================
 
 rem === Settings ===
 
-rem 7Zip Location
-set ZIP_DIR="C:\Program Files\7-Zip\7z.exe"
-
-rem Server Location
-set SERVER_DIR="C:\PalworldServer"
-
-rem Save Backup Location
-set SAVEBACKUP_DIR="C:\PalworldServerBackups\Saves"
-
-rem Config Backup Location
-set CONFIGBACKUP_DIR="C:\PalworldServerBackups\Config"
-
-rem Purge Interval in Minutes (1440 = 24 Hours)
-set PURGE_INTERVAL="1440"
-
-rem Restart Interval in Seconds (10800 = 3 Hours)
-set RESTART_INTERVAL="10800"
+call "config\config.bat"
 
 rem === End Settings ===
 
 rem ==============================================================================================================================================
 
 rem === Vars ===
-set SAVE_DIR="%SERVER_DIR%\Pal\Saved\SaveGames\0"
-set CONFIG_DIR="%SERVER_DIR%\Pal\Saved\Config\WindowsServer\PalWorldSettings.ini"
-set BIN_DIR="%SERVER_DIR%\Pal\Binaries\Win64"
-set EXE="PalServer-Win64-Test-Cmd.exe"
-set VER=v0.0.2
+call "bin\vars.bat"
 rem === End Vars ===
 
 title PalHub %VER% by AriesLR
@@ -52,22 +32,32 @@ rem == Start Server ==
 call :colorEcho 02 "[PalHub] Starting Server"
 echo:
 echo:
-timeout /t 3 /nobreak > nul
 
 call :startserverfnc
+timeout /t 3 /nobreak > nul
 
 call :colorEcho 0a "[PalHub] Server Started"
 echo:
 echo:
-goto wait
+goto rcon
 rem == End Start Server ==
+
+rem == Open Rcon ==
+:rcon
+call :colorEcho 06 "[PalHub] Connecting Rcon"
+echo:
+echo:
+timeout /t 3 /nobreak > nul
+start /d "bin" rcon.bat
+goto wait
+rem == End Open Rcon ==
 
 rem == Wait For Restart ==
 :wait
 call :colorEcho 0e "[PalHub] Waiting for Restart"
 echo:
 echo:
-timeout /t %RESTART_INTERVAL% /nobreak
+timeout /t %RESTART_INTERVAL% /nobreak > nul
 echo:
 goto stop
 rem == End Wait For Restart ==
@@ -140,6 +130,8 @@ rem == End Start Server FNC ==
 rem == Stop Server FNC ==
 :stopserverfnc
 taskkill /f /im %EXE% > nul
+taskkill /f /fi "WINDOWTITLE eq PalHub Rcon*" > nul
+taskkill /f /im "rcon.exe" > nul
 goto :eof
 rem == End Stop Server FNC ==
 
@@ -152,7 +144,7 @@ echo:
 echo:
 timeout /t 1 /nobreak > nul
 
-%ZIP_DIR% a -tzip "%SAVEBACKUP_DIR%\SaveBackup_%DATE%.zip" "%SAVE_DIR%" > nul
+%ZIP_DIR% a -tzip "%BACKUP_DIR%\Saves\SaveBackup_%DATE%.zip" "%SAVE_DIR%" > nul
 timeout /t 6 /nobreak > nul
 
 call :colorEcho 05 "[PalHub] Backup Config Files"
@@ -160,7 +152,7 @@ echo:
 echo:
 timeout /t 1 /nobreak > nul
 
-%ZIP_DIR% a -tzip "%CONFIGBACKUP_DIR%\ConfigBackup_%DATE%.zip" "%CONFIG_DIR%" > nul
+%ZIP_DIR% a -tzip "%BACKUP_DIR%\Config\ConfigBackup_%DATE%.zip" "%CONFIG_DIR%" > nul
 timeout /t 6 /nobreak > nul
 
 call :colorEcho 0d "[PalHub] All Backups Complete"
@@ -177,13 +169,13 @@ call :colorEcho 01 "[PalHub] Purging Save Backups"
 echo:
 echo:
 timeout /t 2 /nobreak > nul
-powershell.exe -ExecutionPolicy Bypass -Command "Get-ChildItem -path %SAVEBACKUP_DIR% | where {$_.Lastwritetime -lt (date).addminutes(-%PURGE_INTERVAL%)} | remove-item"
+powershell.exe -ExecutionPolicy Bypass -Command "Get-ChildItem -path %BACKUP_DIR%\Saves | where {$_.LastWritetime -lt (date).addminutes(-%PURGE_INTERVAL%)} | remove-item"
 
 call :colorEcho 01 "[PalHub] Purging Config Backups"
 echo:
 echo:
 timeout /t 2 /nobreak > nul
-powershell.exe -ExecutionPolicy Bypass -Command "Get-ChildItem -path %CONFIGBACKUP_DIR% | where {$_.Lastwritetime -lt (date).addminutes(-%PURGE_INTERVAL%)} | remove-item"
+powershell.exe -ExecutionPolicy Bypass -Command "Get-ChildItem -path %BACKUP_DIR%\Config | where {$_.Lastwritetime -lt (date).addminutes(-%PURGE_INTERVAL%)} | remove-item"
 
 call :colorEcho 09 "[PalHub] Purge Complete"
 echo:
@@ -191,8 +183,6 @@ echo:
 timeout /t 2 /nobreak > nul
 goto :eof
 rem == End Purge FNC ==
-
-
 
 rem === End Functions ===
 

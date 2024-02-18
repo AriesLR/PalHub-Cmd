@@ -7,6 +7,7 @@ PalHub is a lightweight server manager specifically designed for Palworld server
 - **Server Start**: Start your Palworld server with a single click, getting it up and running quickly.
 - **Automated Restart**: Set up automated restarts for your server at customizable intervals to keep it fresh and optimized.
 - **Backup and Purge**: Automatically backup your save and config files when the server restarts, and purge old backups to save disk space.
+- **Rcon Integration**: Control your Palworld server remotely using the Rcon protocol for easy administration and management.
 - **Simple Setup**: Easy configuration through the script, requiring minimal effort to get started.
 
 ## Requirements
@@ -18,17 +19,19 @@ PalHub is a lightweight server manager specifically designed for Palworld server
 ## Usage
 
 1. **Configure PalHub:**
-   - Edit the script (`PalHub.bat`) to set your server directory (`SERVER_DIR`), backup directories (`SAVEBACKUP_DIR` and `CONFIGBACKUP_DIR`), purge interval (`PURGE_INTERVAL`), and restart interval (`RESTART_INTERVAL`) according to your setup.
+   - Edit the config (`config\config.bat`) according to your server.
 
 2. **Start Server:**
    - Run the script `PalHub.bat`.
    - PalHub will start your Palworld server.
 
-## Script Explanation
+## Config Options
 
+- **`ZIP_DIR`**: Set the directory where 7Zip is installed.
 - **`SERVER_DIR`**: Set the directory where your Palworld server is located.
-- **`SAVEBACKUP_DIR`**: Set the directory to store backup files for saves.
-- **`CONFIGBACKUP_DIR`**: Set the directory to store backup files for config.
+- **`BACKUP_DIR`**: Set the directory to store backup files for saves.
+- **`RCON_IP`**: Set the IP:Port of your server.
+- **`RCON_PASS`**: Set the Rcon (Admin) password of your server.
 - **`PURGE_INTERVAL`**: Set the interval (in minutes) to purge old backups.
 - **`RESTART_INTERVAL`**: Set the interval (in seconds) for automated server restarts.
 
@@ -46,5 +49,5 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Acknowledgements
 
+- [Rcon-cli](https://github.com/gorcon/rcon-cli) - For the command line based rcon client.
 - [Palworld](https://www.pocketpair.jp/palworld) - For inspiring this project.
-- [7-Zip](https://www.7-zip.org/) - For providing the tools necessary for backup functionality.
