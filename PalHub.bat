@@ -40,7 +40,7 @@ set EXE="PalServer-Win64-Test-Cmd.exe"
 set VER=v0.0.2
 rem === End Vars ===
 
-
+title PalHub %VER% by AriesLR
 
 rem === Main Content ===
 :main
@@ -111,7 +111,6 @@ rem === Functions ===
 
 rem == Title FNC ==
 :titlefnc
-title PalHub %VER% by AriesLR
 call :colorEcho 0b "[Title] PalHub %VER% by AriesLR"
 echo:
 echo:
