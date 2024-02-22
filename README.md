@@ -2,6 +2,9 @@
 
 PalHub is a lightweight server manager specifically designed for Palworld servers. It simplifies the process of starting and automating restarts for your Palworld server, ensuring seamless gameplay experiences.
 
+> [!NOTE]
+> I'm currently building an application to replace this. I will link to it from here when a release is ready.
+
 ## Features
 
 - **Server Start**: Start your Palworld server with a single click, getting it up and running quickly.
