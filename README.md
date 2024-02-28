@@ -57,3 +57,6 @@ This project is licensed under the [MIT License](LICENSE).
 
 - [Rcon-cli](https://github.com/gorcon/rcon-cli) - For the command line based rcon client.
 - [Palworld](https://www.pocketpair.jp/palworld) - For inspiring this project.
+
+### Tips
+[Buy Me a Coffee](https://www.buymeacoffee.com/arieslr)
