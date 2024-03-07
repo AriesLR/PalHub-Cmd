@@ -3,7 +3,7 @@
 PalHub is a lightweight server manager specifically designed for Palworld servers. It simplifies the process of starting and automating restarts for your Palworld server, ensuring seamless gameplay experiences.
 
 > [!NOTE]
-> Download the successor to Palhub-Cmd, [HERE](https://github.com/AriesLR/Palhub)
+> Download the successor to Palhub-Cmd, [HERE](https://github.com/AriesLR/Aetherium)
 
 ## Features
 
